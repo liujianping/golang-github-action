@@ -5,9 +5,6 @@ FROM golang:1.14-alpine AS builder
 ARG VERSION
 ARG COMMIT
 ARG BUILDTIME
-# ENV VERSION ${VERSION}
-# ENV COMMIT ${COMMIT}
-# ENV BUILDTIME ${BUILDTIME}
 WORKDIR /app
 COPY . .
 RUN GOOS=linux go build -o main -ldflags "-X github.com/x-mod/build.version=${VERSION} -X github.com/x-mod/build.commit=${COMMIT} -X github.com/x-mod/build.date=${BUILDTIME}"

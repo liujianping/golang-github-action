@@ -37,9 +37,10 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: docker build
-        run: docker build --build-arg VERSION=${VERSION} --build-arg COMMIT=${COMMIT} --build-arg BUILDTIME=${BUILDTIME} -t ${DOCKER_USERNAME}/${PROJECT}:${IMAGE_TAG} .
+        run: docker build --build-arg TOKEN=${TOKEN} --build-arg VERSION=${VERSION} --build-arg COMMIT=${COMMIT} --build-arg BUILDTIME=${BUILDTIME} -t ${DOCKER_USERNAME}/${PROJECT}:${IMAGE_TAG} .
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
       - name: Push to docker hub
         uses: actions-hub/docker@master
